@@ -18,8 +18,8 @@ describe('LinkedList', () => {
 
             list.append(data);
 
-            expect(list._tail).to.be.an.instanceof(Node)
-            expect(list._head).to.be.an.instanceof(Node)
+            expect(list._tail).to.be.an.instanceof(Node);
+            expect(list._head).to.be.an.instanceof(Node);
         });
 
         it('should add new data to the end of list', () => {
@@ -31,6 +31,9 @@ describe('LinkedList', () => {
             expect(list.length).to.equal(2);
             expect(list.tail()).to.equal(413);
             expect(list.head()).to.equal(123);
+
+            expect(list._tail.prev.data).to.equal(123);
+            expect(list._head.next.data).to.equal(413);
         });
 
     });
@@ -143,6 +146,19 @@ describe('LinkedList', () => {
             expect(list.at(2)).to.equal(4);
             expect(list.at(3)).to.equal(3);
             expect(list.at(4)).to.equal(2);
+
+            expect(list._head.next.data).to.equal(5);
+            expect(list._head.next.next.data).to.equal(4);
+            expect(list._head.next.next.next.data).to.equal(3);
+            expect(list._head.next.next.next.next.data).to.equal(2);
+            expect(list._head.next.next.next.next.next.data).to.equal(list.tail());
+
+            expect(list._tail.prev.data).to.equal(2);
+            expect(list._tail.prev.prev.data).to.equal(3);
+            expect(list._tail.prev.prev.prev.data).to.equal(4);
+            expect(list._tail.prev.prev.prev.prev.data).to.equal(5);
+            expect(list._tail.prev.prev.prev.prev.prev.data).to.equal(list.head());
+
         });
     });
     describe('#indexOf', () => {
